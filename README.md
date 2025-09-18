@@ -1,69 +1,21 @@
-# React + TypeScript + Vite
+Here’s a concise summary of the main technologies and concepts I used in my resume maker project:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + TypeScript (optional) – Component-based architecture for dynamic UI.
 
-Currently, two official plugins are available:
+State Management with useState – Stored formData in the parent App.tsx for a single source of truth.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Dynamic Forms – Used .map() to render multiple work experience inputs and textareas.
 
-## Expanding the ESLint configuration
+Add/Remove/Update Functionality – Implemented addExperience, removeExperience, and updateExperience to modify the state array.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Props and Callbacks – Passed state and update functions from parent to child components for live updates.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Controlled Inputs – Bound form inputs to state so the resume preview updates instantly.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+React Keys – Used key={exp.id} to help React track list items.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Tailwind CSS – Styled the app with utility classes, including flex layouts and spacing.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Prevented Default Form Behavior – Avoided <form> submission issues by using div wrappers or type="button" on buttons.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Dynamic Resume Preview – Separate <Resume /> component renders live updates from formData.
