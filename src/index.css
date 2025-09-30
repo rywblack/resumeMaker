@@ -6,3 +6,6 @@
 @layer base {
 }
 
+body {
+  font-family: 'Cantarell', sans-serif;
+}

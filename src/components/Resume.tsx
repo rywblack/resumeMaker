@@ -1,66 +1,120 @@
+import SectionHeading from "./SectionHeading.tsx";
 
-function Resume ({formData, experiences}) {
-  
-
+function Resume({ formData, experiences }) {
   return (
-    <div className="px-8 aspect-[8.5/11] w-full max-w-screen-md mx-auto break-words">
-      <div>
-        <div className="flex justify-center pb-2">
-        <h1 class="text-2xl"><b>{formData.name}</b></h1>
-        </div>
-        <div className="flex flex-row justify-around gap-8">
-          <div>
-            <p>{formData.email}</p>
-          </div>
-          <div>
-            <p>{formData.phone}</p>
-          </div> 
-          <div>
-            <p>{formData.linkedIn}</p>
-          </div> 
+    <div
+      id="resume-content"
+      style={{
+        width: "794px",
+        minHeight: "1123px",
+        boxSizing: "border-box",
+        backgroundColor: "#ffffff",
+        color: "#1f2937"
+      }}
+      className="mx-auto p-8"
+    >
+      {/* Header */}
+      <div className="text-center mb-4">
+        <h1 style={{ fontSize: "1.875rem", fontWeight: "bold" }}>
+          {formData.name}
+        </h1>
+        <div
+          className="flex flex-wrap justify-center gap-4 mt-2"
+          style={{ fontSize: "0.875rem" }}
+        >
+          {formData.email && <p>{formData.email}</p>}
+          {formData.phone && <p>{formData.phone}</p>}
+          {formData.linkedIn && (
+            <a href={formData.linkedIn} target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", textDecoration: "underline" }}>
+              LinkedIn
+            </a>
+          )}
+          {formData.github && (
+            <a href={formData.github} target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", textDecoration: "underline" }}>
+              GitHub
+            </a>
+          )}
+          {formData.portfolio && (
+            <a href={formData.portfolio} target="_blank" rel="noopener noreferrer" style={{ color: "#2563eb", textDecoration: "underline" }}>
+              Portfolio
+            </a>
+          )}
         </div>
       </div>
-      <h1 class="pt-4 text-2xl">Education</h1>
-      <hr className="w-full"/>
-      <div className="flex flex-col p-4 pb-0">
+
+      {/* Education */}
+      <SectionHeading>Education</SectionHeading>
+      <div className="flex flex-col p-2 pb-0">
         <div className="flex flex-row justify-between">
-          <div>
-            <h2><b>{formData.university}</b></h2>
-          </div>
-          <div>
-            <p>{formData.gradDate}</p>
-          </div>
+          <h2 style={{ fontWeight: "600" }}>{formData.university}</h2>
+          <p>{formData.gradDate}</p>
         </div>
-        <div>
-          <p><i>{formData.major}</i></p>
-        </div> 
+        <p style={{ fontStyle: "italic" }}>{formData.major}</p>
       </div>
-      <h1 className="pt-4 text-2xl">Work Experience</h1>
-      <hr className="flex flex-col w-full"/>
-      {experiences.map(exp => (
-        <div className="flex flex-col p-4"> 
-          <div className="flex flex-row justify-between ">
-            <h2><b>{exp.title}</b></h2>
-            <h2>{exp.dates}</h2> 
-          </div>
-          <div className="flex flex-row justify-between mb-2">           
-            <h2><i>{exp.company}</i></h2>
-            <h2><i>{exp.location}</i></h2>
-          </div>
-          <p>{exp.description}</p>
-        </div>
-        ))}
-      <h1 className="pt-2 text-2xl">Technical Skills</h1>
-      <hr className="flex flex-col w-full"/>
-      <div className="p-4">
-        <h2><b>Languages: </b>{formData.langs}</h2>
-        <h2><b>Frameworks: </b>{formData.frameworks}</h2>
-        <h2><b>Developer Tools: </b>{formData.tools}</h2>
-        <h2><b>Libraries </b>{formData.libraries}</h2>
+
+      {/* Work Experience */}
+      {experiences.length > 0 && (
+        <>
+          <SectionHeading>Work Experience</SectionHeading>
+          {experiences.map(exp => (
+            <div key={exp.id} className="p-2">
+              <div className="flex justify-between">
+                <h3 style={{ fontWeight: "600" }}>{exp.title}</h3>
+                <p>{exp.dates}</p>
+              </div>
+              <div
+                className="flex justify-between mb-1"
+                style={{ fontSize: "0.875rem", fontStyle: "italic" }}
+              >
+                <span>{exp.company}</span>
+                <span>{exp.location}</span>
+              </div>
+              <p>{exp.description}</p>
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* Projects */}
+      {formData.projects?.length > 0 && (
+        <>
+          <SectionHeading>Projects</SectionHeading>
+          {formData.projects.map(proj => (
+            <div key={proj.id} className="p-2">
+              <div className="flex justify-between items-center">
+                <h3 style={{ fontWeight: "600" }}>{proj.title}</h3>
+                {proj.link && (
+                  <a
+                    href={proj.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: "#2563eb",
+                      textDecoration: "underline",
+                      fontSize: "0.875rem"
+                    }}
+                  >
+                    Link
+                  </a>
+                )}
+              </div>
+              <p>{proj.description}</p>
+            </div>
+          ))}
+        </>
+      )}
+
+      {/* Technical Skills */}
+      <SectionHeading>Technical Skills</SectionHeading>
+      <div className="p-2">
+        <p><b>Languages:</b> {formData.langs}</p>
+        <p><b>Frameworks:</b> {formData.frameworks}</p>
+        <p><b>Developer Tools:</b> {formData.tools}</p>
+        <p><b>Libraries:</b> {formData.libraries}</p>
       </div>
     </div>
-      );
-
+  );
 }
 
 export default Resume;
+

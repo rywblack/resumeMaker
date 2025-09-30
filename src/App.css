@@ -9,3 +9,7 @@ form {
   display: flex;
   flex-direction: column;
 }
+body {
+  font-family: 'Cantarell', sans-serif;
+}
+
