@@ -6,24 +6,40 @@ import ResumeForm from "./components/ResumeForm";
 import PDFResume from "./components/PDFResume";
 
 function App() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    linkedIn: "",
-    github: "",
-    portfolio: "",
-    university: "",
-    major: "",
-    location: "",
-    gradDate: "",
-    experiences: [],
-    projects: [],
-    langs: "",
-    frameworks: "",
-    tools: "",
-    libraries: "",
-  });
+const [formData, setFormData] = useState({
+  name: "John Doe",
+  email: "john.doe@example.com",
+  phone: "(555) 123-4567",
+  linkedIn: "linkedin.com/in/johndoe",
+  github: "github.com/johndoe",
+  portfolio: "johndoe.dev",
+  university: "University of Example",
+  major: "B.S. in Computer Science",
+  location: "Anytown, USA",
+  gradDate: "May 2025",
+  experiences: [
+    {
+      id: 1,
+      title: "Front-End Developer Intern",
+      dates: "Jun 2024 – Aug 2024",
+      company: "TechCorp",
+      location: "Remote",
+      description: "Built responsive UIs using React and improved page load speed by 30%.",
+    },
+  ],
+  projects: [
+    {
+      id: 1,
+      title: "Portfolio Website",
+      link: "https://johndoe.dev",
+      description: "A personal website showcasing my projects and skills, built with Next.js.",
+    },
+  ],
+  langs: "JavaScript, TypeScript, Python, C++",
+  frameworks: "React, Next.js, Node.js",
+  tools: "Git, Docker, Vite, VSCode",
+  libraries: "Chakra UI, React-PDF, Framer Motion",
+});
 
   const inputClass =
     "w-full p-2 border border-gray-300 rounded-md outline-none focus:border-gray-500 focus:ring-2 focus:ring-gray-300 mb-2";
