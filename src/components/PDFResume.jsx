@@ -5,7 +5,7 @@ import {
   View,
   Link,
   StyleSheet,
-  Font,
+  Font
 } from "@react-pdf/renderer";
 
 // Register local TTFs you downloaded into /public/fonts
@@ -14,8 +14,8 @@ Font.register({
   fonts: [
     { src: "/fonts/Cantarell-Regular.ttf", fontWeight: "normal" },
     { src: "/fonts/Cantarell-Bold.ttf", fontWeight: "bold" },
-    { src: "/fonts/Cantarell-Italic.ttf", fontStyle: "italic", fontWeight: "normal" },
-  ],
+    { src: "/fonts/Cantarell-Italic.ttf", fontStyle: "italic", fontWeight: "normal" }
+  ]
 });
 
 const styles = StyleSheet.create({
@@ -25,26 +25,26 @@ const styles = StyleSheet.create({
     paddingTop: 32,
     paddingHorizontal: 40,
     lineHeight: 1.4,
-    flexDirection: "column",
+    flexDirection: "column"
   },
   name: {
     fontSize: 20,
     textAlign: "center",
     fontWeight: "bold",
-    marginBottom: 8,
+    marginBottom: 8
   },
   contactRow: {
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: 12,
-    flexWrap: "wrap",
+    flexWrap: "wrap"
   },
   contactItem: {
     marginRight: 12,
-    marginBottom: 4,
+    marginBottom: 4
   },
   section: {
-    marginBottom: 12,
+    marginBottom: 12
   },
   heading: {
     fontSize: 14,
@@ -52,75 +52,40 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     paddingBottom: 2,
     borderBottomWidth: 1,
-    borderBottomColor: "#000000",
+    borderBottomColor: "#000000"
   },
   eduRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 2,
+    marginBottom: 2
   },
   bold: {
-    fontWeight: "bold",
+    fontWeight: "bold"
   },
   italic: {
-    fontStyle: "italic",
+    fontStyle: "italic"
   },
   expItem: {
-    marginBottom: 8,
+    marginBottom: 8
   },
   expHeader: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-between"
   },
   projectLink: {
-    textDecoration: "underline",
-  },
+    textDecoration: "underline"
+  }
 });
 
-const normalizeUrl = (url: string) => {
+const normalizeUrl = (url) => {
   if (!url) return "";
   if (/^https?:\/\//i.test(url)) return url;
   return "https://" + url;
 };
 
-type Experience = {
-  id: number | string;
-  title: string;
-  dates: string;
-  company: string;
-  location: string;
-  description: string;
-};
-
-type Project = {
-  id: number | string;
-  title: string;
-  link?: string;
-  description: string;
-};
-
-type FormData = {
-  name: string;
-  email: string;
-  phone: string;
-  linkedIn: string;
-  github: string;
-  portfolio: string;
-  university: string;
-  major: string;
-  location: string;
-  gradDate: string;
-  experiences: Experience[];
-  projects: Project[];
-  langs: string;
-  frameworks: string;
-  tools: string;
-  libraries: string;
-};
-
-export default function PDFResume({ formData }: { formData: Partial<FormData> }) {
+export default function PDFResume({ formData }) {
   // 🧠 Step 1: Normalize all fields to avoid undefined
-  const safeData: FormData = {
+  const safeData = {
     name: "",
     email: "",
     phone: "",
@@ -137,7 +102,7 @@ export default function PDFResume({ formData }: { formData: Partial<FormData> })
     frameworks: "",
     tools: "",
     libraries: "",
-    ...(formData || {}),
+    ...(formData || {})
   };
 
   const {
@@ -156,7 +121,7 @@ export default function PDFResume({ formData }: { formData: Partial<FormData> })
     langs,
     frameworks,
     tools,
-    libraries,
+    libraries
   } = safeData;
 
   const exps = Array.isArray(experiences) ? experiences.filter(Boolean) : [];
@@ -252,10 +217,30 @@ export default function PDFResume({ formData }: { formData: Partial<FormData> })
         {(langs || frameworks || tools || libraries) && (
           <View style={styles.section}>
             <Text style={styles.heading}>Technical Skills</Text>
-            {langs ? <Text><Text style={styles.bold}>Languages: </Text>{String(langs)}</Text> : null}
-            {frameworks ? <Text><Text style={styles.bold}>Frameworks: </Text>{String(frameworks)}</Text> : null}
-            {tools ? <Text><Text style={styles.bold}>Tools: </Text>{String(tools)}</Text> : null}
-            {libraries ? <Text><Text style={styles.bold}>Libraries: </Text>{String(libraries)}</Text> : null}
+            {langs ? (
+              <Text>
+                <Text style={styles.bold}>Languages: </Text>
+                {String(langs)}
+              </Text>
+            ) : null}
+            {frameworks ? (
+              <Text>
+                <Text style={styles.bold}>Frameworks: </Text>
+                {String(frameworks)}
+              </Text>
+            ) : null}
+            {tools ? (
+              <Text>
+                <Text style={styles.bold}>Tools: </Text>
+                {String(tools)}
+              </Text>
+            ) : null}
+            {libraries ? (
+              <Text>
+                <Text style={styles.bold}>Libraries: </Text>
+                {String(libraries)}
+              </Text>
+            ) : null}
           </View>
         )}
       </Page>

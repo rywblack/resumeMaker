@@ -1,4 +1,4 @@
-import SectionHeading from "./SectionHeading.tsx";
+import SectionHeading from "./SectionHeading.jsx";
 
 function Resume({ formData, experiences }) {
   return (
