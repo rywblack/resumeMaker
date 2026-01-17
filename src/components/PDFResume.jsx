@@ -1,3 +1,4 @@
+// components/PDFResume.jsx
 import {
   Document,
   Page,
@@ -5,7 +6,7 @@ import {
   View,
   Link,
   StyleSheet,
-  Font
+  Font,
 } from "@react-pdf/renderer";
 
 // Register local TTFs you downloaded into /public/fonts
@@ -14,8 +15,12 @@ Font.register({
   fonts: [
     { src: "/fonts/Cantarell-Regular.ttf", fontWeight: "normal" },
     { src: "/fonts/Cantarell-Bold.ttf", fontWeight: "bold" },
-    { src: "/fonts/Cantarell-Italic.ttf", fontStyle: "italic", fontWeight: "normal" }
-  ]
+    {
+      src: "/fonts/Cantarell-Italic.ttf",
+      fontStyle: "italic",
+      fontWeight: "normal",
+    },
+  ],
 });
 
 const styles = StyleSheet.create({
@@ -25,26 +30,26 @@ const styles = StyleSheet.create({
     paddingTop: 32,
     paddingHorizontal: 40,
     lineHeight: 1.4,
-    flexDirection: "column"
+    flexDirection: "column",
   },
   name: {
     fontSize: 20,
     textAlign: "center",
     fontWeight: "bold",
-    marginBottom: 8
+    marginBottom: 8,
   },
   contactRow: {
     flexDirection: "row",
     justifyContent: "center",
     marginBottom: 12,
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   contactItem: {
     marginRight: 12,
-    marginBottom: 4
+    marginBottom: 4,
   },
   section: {
-    marginBottom: 12
+    marginBottom: 12,
   },
   heading: {
     fontSize: 14,
@@ -52,29 +57,29 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     paddingBottom: 2,
     borderBottomWidth: 1,
-    borderBottomColor: "#000000"
+    borderBottomColor: "#000000",
   },
   eduRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginBottom: 2
+    marginBottom: 2,
   },
   bold: {
-    fontWeight: "bold"
+    fontWeight: "bold",
   },
   italic: {
-    fontStyle: "italic"
+    fontStyle: "italic",
   },
   expItem: {
-    marginBottom: 8
+    marginBottom: 8,
   },
   expHeader: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   projectLink: {
-    textDecoration: "underline"
-  }
+    textDecoration: "underline",
+  },
 });
 
 const normalizeUrl = (url) => {
@@ -96,13 +101,14 @@ export default function PDFResume({ formData }) {
     major: "",
     location: "",
     gradDate: "",
+    certifications: [],
     experiences: [],
     projects: [],
     langs: "",
     frameworks: "",
     tools: "",
     libraries: "",
-    ...(formData || {})
+    ...(formData || {}),
   };
 
   const {
@@ -116,14 +122,16 @@ export default function PDFResume({ formData }) {
     major,
     location,
     gradDate,
+    certifications,
     experiences,
     projects,
     langs,
     frameworks,
     tools,
-    libraries
+    libraries,
   } = safeData;
 
+  const certs = Array.isArray(certifications) ? certifications.filter(Boolean) : [];
   const exps = Array.isArray(experiences) ? experiences.filter(Boolean) : [];
   const projs = Array.isArray(projects) ? projects.filter(Boolean) : [];
 
@@ -135,8 +143,12 @@ export default function PDFResume({ formData }) {
 
         {/* Contact */}
         <View style={styles.contactRow}>
-          {email ? <Text style={styles.contactItem}>{String(email)}</Text> : null}
-          {phone ? <Text style={styles.contactItem}>{String(phone)}</Text> : null}
+          {email ? (
+            <Text style={styles.contactItem}>{String(email)}</Text>
+          ) : null}
+          {phone ? (
+            <Text style={styles.contactItem}>{String(phone)}</Text>
+          ) : null}
           {linkedIn ? (
             <Link src={normalizeUrl(String(linkedIn))} style={styles.contactItem}>
               LinkedIn
@@ -148,7 +160,10 @@ export default function PDFResume({ formData }) {
             </Link>
           ) : null}
           {portfolio ? (
-            <Link src={normalizeUrl(String(portfolio))} style={styles.contactItem}>
+            <Link
+              src={normalizeUrl(String(portfolio))}
+              style={styles.contactItem}
+            >
               Portfolio
             </Link>
           ) : null}
@@ -169,11 +184,29 @@ export default function PDFResume({ formData }) {
           </View>
         )}
 
+        {/* Certifications (beneath Education) */}
+        {certs.length > 0 && (
+          <View style={styles.section}>
+            <Text style={styles.heading}>Certifications</Text>
+            {certs.map((c) =>
+              c ? (
+                <View key={String(c.id)} style={{ marginBottom: 4 }}>
+                  <Text>
+                    <Text style={styles.bold}>{String(c.name || "")}</Text>
+                    {c.issuer ? ` — ${String(c.issuer)}` : ""}
+                    {c.date ? ` (${String(c.date)})` : ""}
+                  </Text>
+                </View>
+              ) : null
+            )}
+          </View>
+        )}
+
         {/* Experience */}
         {exps.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.heading}>Work Experience</Text>
-            {exps.map((exp) => (
+            {exps.map((exp) =>
               exp ? (
                 <View key={String(exp.id)} style={styles.expItem}>
                   <View style={styles.expHeader}>
@@ -184,10 +217,12 @@ export default function PDFResume({ formData }) {
                     <Text style={styles.italic}>{String(exp.company)}</Text>
                     <Text style={styles.italic}>{String(exp.location)}</Text>
                   </View>
-                  {exp.description ? <Text>{String(exp.description)}</Text> : null}
+                  {exp.description ? (
+                    <Text>{String(exp.description)}</Text>
+                  ) : null}
                 </View>
               ) : null
-            ))}
+            )}
           </View>
         )}
 
@@ -195,13 +230,16 @@ export default function PDFResume({ formData }) {
         {projs.length > 0 && (
           <View style={styles.section}>
             <Text style={styles.heading}>Projects</Text>
-            {projs.map((p) => (
+            {projs.map((p) =>
               p ? (
                 <View key={String(p.id)} style={styles.expItem}>
                   <View style={styles.expHeader}>
                     <Text style={styles.bold}>{String(p.title)}</Text>
                     {p.link ? (
-                      <Link src={normalizeUrl(String(p.link))} style={styles.projectLink}>
+                      <Link
+                        src={normalizeUrl(String(p.link))}
+                        style={styles.projectLink}
+                      >
                         {String(p.link)}
                       </Link>
                     ) : null}
@@ -209,7 +247,7 @@ export default function PDFResume({ formData }) {
                   {p.description ? <Text>{String(p.description)}</Text> : null}
                 </View>
               ) : null
-            ))}
+            )}
           </View>
         )}
 
