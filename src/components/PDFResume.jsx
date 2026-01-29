@@ -101,6 +101,7 @@ export default function PDFResume({ formData }) {
     major: "",
     location: "",
     gradDate: "",
+    professionalSummary: "",
     certifications: [],
     experiences: [],
     projects: [],
@@ -122,6 +123,7 @@ export default function PDFResume({ formData }) {
     major,
     location,
     gradDate,
+    professionalSummary,
     certifications,
     experiences,
     projects,
@@ -168,6 +170,14 @@ export default function PDFResume({ formData }) {
             </Link>
           ) : null}
         </View>
+
+        {/* Professional Summary */}
+        {professionalSummary && (
+          <View style={styles.section}>
+            <Text style={styles.heading}>Professional Summary</Text>
+            <Text>{String(professionalSummary)}</Text>
+          </View>
+        )}
 
         {/* Education */}
         {(university || gradDate || location || major) && (

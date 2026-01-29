@@ -42,6 +42,16 @@ function Resume({ formData, experiences }) {
         </div>
       </div>
 
+      {/* Professional Summary */}
+      {formData.professionalSummary && (
+        <>
+          <SectionHeading>Professional Summary</SectionHeading>
+          <div className="p-2">
+            <p>{formData.professionalSummary}</p>
+          </div>
+        </>
+      )}
+
       {/* Education */}
       <SectionHeading>Education</SectionHeading>
       <div className="flex flex-col p-2 pb-0">

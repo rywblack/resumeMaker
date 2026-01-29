@@ -151,6 +151,17 @@ export default function ResumeForm({
         className={inputClass}
       />
 
+      <h2 className="text-xl font-bold mt-4 mb-2">Professional Summary</h2>
+      <textarea
+        name="professionalSummary"
+        value={formData.professionalSummary || ""}
+        onChange={handleChange}
+        placeholder="Write a brief paragraph about yourself, your skills, and career goals..."
+        className={inputClass}
+        rows={4}
+        style={{ resize: "vertical" }}
+      />
+
       <h2 className="text-xl font-bold mt-4 mb-2">Education</h2>
       <input
         name="university"

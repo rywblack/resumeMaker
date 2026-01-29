@@ -19,6 +19,9 @@ function App() {
     location: "Anytown, USA",
     gradDate: "May 2025",
 
+    professionalSummary:
+      "Results-driven software developer with experience building responsive web applications using modern JavaScript frameworks. Passionate about creating clean, efficient code and continuously learning new technologies to deliver high-quality solutions.",
+
     certifications: [
       { id: 1, name: "CompTIA A+", issuer: "CompTIA", date: "2024" },
       {
