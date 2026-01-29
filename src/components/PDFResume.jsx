@@ -23,6 +23,9 @@ Font.register({
   ],
 });
 
+// Disable hyphenation to prevent words from being split with dashes
+Font.registerHyphenationCallback((word) => [word]);
+
 const styles = StyleSheet.create({
   page: {
     fontFamily: "Cantarell",
@@ -79,6 +82,9 @@ const styles = StyleSheet.create({
   },
   projectLink: {
     textDecoration: "underline",
+  },
+  summaryText: {
+    textAlign: "justify",
   },
 });
 
@@ -175,7 +181,7 @@ export default function PDFResume({ formData }) {
         {professionalSummary && (
           <View style={styles.section}>
             <Text style={styles.heading}>Professional Summary</Text>
-            <Text>{String(professionalSummary)}</Text>
+            <Text style={styles.summaryText}>{String(professionalSummary)}</Text>
           </View>
         )}
 

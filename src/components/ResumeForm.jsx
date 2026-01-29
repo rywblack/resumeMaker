@@ -161,6 +161,17 @@ export default function ResumeForm({
         rows={4}
         style={{ resize: "vertical" }}
       />
+      {formData.professionalSummary && (
+        <button
+          type="button"
+          onClick={() =>
+            setFormData((prev) => ({ ...prev, professionalSummary: "" }))
+          }
+          className={buttonClass}
+        >
+          Clear Summary
+        </button>
+      )}
 
       <h2 className="text-xl font-bold mt-4 mb-2">Education</h2>
       <input
