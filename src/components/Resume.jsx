@@ -114,14 +114,15 @@ function Resume({ formData, experiences }) {
         </>
       )}
 
-      {/* Technical Skills */}
-      <SectionHeading>Technical Skills</SectionHeading>
-      <div className="p-2">
-        <p><b>Languages:</b> {formData.langs}</p>
-        <p><b>Frameworks:</b> {formData.frameworks}</p>
-        <p><b>Developer Tools:</b> {formData.tools}</p>
-        <p><b>Libraries:</b> {formData.libraries}</p>
-      </div>
+      {/* Skills */}
+      {formData.skillsContent && (
+        <>
+          <SectionHeading>{formData.skillsTitle || "Skills"}</SectionHeading>
+          <div className="p-2">
+            <p>{formData.skillsContent}</p>
+          </div>
+        </>
+      )}
     </div>
   );
 }

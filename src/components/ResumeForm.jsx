@@ -277,33 +277,32 @@ export default function ResumeForm({
 
       <h2 className="text-xl font-bold mt-4 mb-2">Skills</h2>
       <input
-        name="langs"
-        value={formData.langs}
+        name="skillsTitle"
+        value={formData.skillsTitle || ""}
         onChange={handleChange}
-        placeholder="Languages"
+        placeholder="Section Title (e.g., Technical Skills, Core Competencies)"
         className={inputClass}
       />
-      <input
-        name="frameworks"
-        value={formData.frameworks}
+      <textarea
+        name="skillsContent"
+        value={formData.skillsContent || ""}
         onChange={handleChange}
-        placeholder="Frameworks"
+        placeholder="List your skills..."
         className={inputClass}
+        rows={4}
+        style={{ resize: "vertical" }}
       />
-      <input
-        name="tools"
-        value={formData.tools}
-        onChange={handleChange}
-        placeholder="Tools"
-        className={inputClass}
-      />
-      <input
-        name="libraries"
-        value={formData.libraries}
-        onChange={handleChange}
-        placeholder="Libraries"
-        className={inputClass}
-      />
+      {formData.skillsContent && (
+        <button
+          type="button"
+          onClick={() =>
+            setFormData((prev) => ({ ...prev, skillsContent: "" }))
+          }
+          className={buttonClass}
+        >
+          Clear Skills
+        </button>
+      )}
     </form>
   );
 }

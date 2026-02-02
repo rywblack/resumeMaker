@@ -111,10 +111,8 @@ export default function PDFResume({ formData }) {
     certifications: [],
     experiences: [],
     projects: [],
-    langs: "",
-    frameworks: "",
-    tools: "",
-    libraries: "",
+    skillsTitle: "",
+    skillsContent: "",
     ...(formData || {}),
   };
 
@@ -133,10 +131,8 @@ export default function PDFResume({ formData }) {
     certifications,
     experiences,
     projects,
-    langs,
-    frameworks,
-    tools,
-    libraries,
+    skillsTitle,
+    skillsContent,
   } = safeData;
 
   const certs = Array.isArray(certifications) ? certifications.filter(Boolean) : [];
@@ -268,33 +264,10 @@ export default function PDFResume({ formData }) {
         )}
 
         {/* Skills */}
-        {(langs || frameworks || tools || libraries) && (
+        {skillsContent && (
           <View style={styles.section}>
-            <Text style={styles.heading}>Technical Skills</Text>
-            {langs ? (
-              <Text>
-                <Text style={styles.bold}>Languages: </Text>
-                {String(langs)}
-              </Text>
-            ) : null}
-            {frameworks ? (
-              <Text>
-                <Text style={styles.bold}>Frameworks: </Text>
-                {String(frameworks)}
-              </Text>
-            ) : null}
-            {tools ? (
-              <Text>
-                <Text style={styles.bold}>Tools: </Text>
-                {String(tools)}
-              </Text>
-            ) : null}
-            {libraries ? (
-              <Text>
-                <Text style={styles.bold}>Libraries: </Text>
-                {String(libraries)}
-              </Text>
-            ) : null}
+            <Text style={styles.heading}>{String(skillsTitle) || "Skills"}</Text>
+            <Text style={styles.summaryText}>{String(skillsContent)}</Text>
           </View>
         )}
       </Page>

@@ -52,10 +52,9 @@ function App() {
           "A personal website showcasing my projects and skills, built with Next.js.",
       },
     ],
-    langs: "JavaScript, TypeScript, Python, C++",
-    frameworks: "React, Next.js, Node.js",
-    tools: "Git, Docker, Vite, VSCode",
-    libraries: "Chakra UI, React-PDF, Framer Motion",
+    skillsTitle: "Technical Skills",
+    skillsContent:
+      "JavaScript, TypeScript, Python, C++ | React, Next.js, Node.js | Git, Docker, Vite, VSCode | Chakra UI, React-PDF, Framer Motion",
   });
 
   const inputClass =
