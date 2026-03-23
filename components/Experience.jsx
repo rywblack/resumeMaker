@@ -1,3 +1,5 @@
+"use client";
+
 export default function Experience({
   experiences,
   addExperience,
@@ -76,4 +78,3 @@ export default function Experience({
     </div>
   );
 }
-

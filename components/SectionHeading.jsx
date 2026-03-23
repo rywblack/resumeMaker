@@ -1,4 +1,6 @@
-export default function SectionHeading({ children }: { children: string }) {
+"use client";
+
+export default function SectionHeading({ children }) {
   return (
     <div className="mt-6 mb-2">
       <h2 style={{ fontSize: "1.25rem", fontWeight: "bold" }}>{children}</h2>
@@ -9,4 +11,3 @@ export default function SectionHeading({ children }: { children: string }) {
     </div>
   );
 }
-

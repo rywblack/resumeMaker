@@ -1,3 +1,5 @@
+"use client";
+
 export default function Project({ projects, addProject, updateProject, removeProject, experienceClass, buttonClass }) {
   return (
     <div>
@@ -43,4 +45,3 @@ export default function Project({ projects, addProject, updateProject, removePro
     </div>
   );
 }
-

@@ -1,4 +1,5 @@
-// components/ResumeForm.jsx
+"use client";
+
 import Experience from "./Experience";
 import Projects from "./Project";
 
@@ -306,4 +307,3 @@ export default function ResumeForm({
     </form>
   );
 }
-

@@ -1,4 +1,5 @@
-// components/PDFResume.jsx
+"use client";
+
 import {
   Document,
   Page,
@@ -95,7 +96,7 @@ const normalizeUrl = (url) => {
 };
 
 export default function PDFResume({ formData }) {
-  // 🧠 Step 1: Normalize all fields to avoid undefined
+  // Normalize all fields to avoid undefined
   const safeData = {
     name: "",
     email: "",
@@ -274,4 +275,3 @@ export default function PDFResume({ formData }) {
     </Document>
   );
 }
-

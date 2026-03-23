@@ -1,4 +1,6 @@
-import SectionHeading from "./SectionHeading.jsx";
+"use client";
+
+import SectionHeading from "./SectionHeading";
 
 function Resume({ formData, experiences }) {
   return (
@@ -128,4 +130,3 @@ function Resume({ formData, experiences }) {
 }
 
 export default Resume;
-
